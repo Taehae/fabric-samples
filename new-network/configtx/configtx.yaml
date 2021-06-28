@@ -1,0 +1,210 @@
+Organizations:
+    - &OrdererOrg
+        Name: OrdererOrg
+        ID: OrdererMSP
+        MSPDir: ../organizations/ordererOrganizations/example.com/msp
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Writers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Admins:
+                Type: Signature
+                Rule: "OR('OrdererMSP.admin')"
+        OrdererEndpoints:
+            - orderer0.example.com:7050
+            - orderer1.example.com:7050
+            - orderer2.example.com:7050
+    - &pnn
+        Name: pnnMSP
+        ID: pnnMSP
+        MSPDir: ../organizations/peerOrganizations/pnn.example.com/msp
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('pnnMSP.admin', 'pnnMSP.peer', 'pnnMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('pnnMSP.admin', 'pnnMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('pnnMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('pnnMSP.peer')"
+
+        AnchorPeers:
+            - Host: peer0.pnn.example.com
+              Port: 7051
+    - &m2m
+        Name: m2mMSP
+        ID: m2mMSP
+        MSPDir: ../organizations/peerOrganizations/m2m.example.com/msp
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('m2mMSP.admin', 'm2mMSP.peer', 'm2mMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('m2mMSP.admin', 'm2mMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('m2mMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('m2mMSP.peer')"
+
+        AnchorPeers:
+            - Host: peer0.m2m.example.com
+              Port: 7051
+    - &etri
+        Name: etriMSP
+        ID: etriMSP
+        MSPDir: ../organizations/peerOrganizations/etri.example.com/msp
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('etriMSP.admin', 'etriMSP.peer', 'etriMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('etriMSP.admin', 'etriMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('etriMSP.admin')"
+            Endorsement:
+                Type: Signature
+                Rule: "OR('etriMSP.peer')"
+
+        AnchorPeers:
+            - Host: peer0.etri.example.com
+              Port: 7051
+Capabilities:
+    Channel: &ChannelCapabilities
+        V2_0: true
+    Orderer: &OrdererCapabilities
+        V2_0: true
+    Application: &ApplicationCapabilities
+        V2_0: true
+
+Application: &ApplicationDefaults
+    Organizations:
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        LifecycleEndorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+        Endorsement:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Endorsement"
+    Capabilities:
+        <<: *ApplicationCapabilities
+Orderer: &OrdererDefaults
+    OrdererType: etcdraft
+    Addresses:
+        - orderer0.example.com:7050
+        - orderer1.example.com:7050
+        - orderer2.example.com:7050
+    EtcdRaft:
+        Consenters:
+        - Host: orderer0.example.com
+          Port: 7050
+          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
+          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
+        - Host: orderer1.example.com
+          Port: 7050
+          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
+          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
+        - Host: orderer2.example.com
+          Port: 7050
+          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 99 MB
+        PreferredMaxBytes: 512 KB
+    Organizations:
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        BlockValidation:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+Channel: &ChannelDefaults
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    Capabilities:
+        <<: *ChannelCapabilities
+
+Profiles:
+    MyOrgsApplicationGenesis:
+        <<: *ChannelDefaults
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+            Capabilities:
+                <<: *OrdererCapabilities
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *pnn
+                - *m2m
+                - *etri
+            Capabilities:
+                <<: *ApplicationCapabilities
+        Consortiums:
+            myConsortium:
+                Organizations:
+                     - *pnn
+                     - *m2m
+                     - *etri
+    first:
+        Consortium: myConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *pnn
+                - *m2m
+    second:
+        Consortium: myConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *m2m
+                - *etri
+    third:
+        Consortium: myConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *pnn
+                - *etri

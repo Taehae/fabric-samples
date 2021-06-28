@@ -1,0 +1,61 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Org3Up	addOrg3/addOrg3.sh	/^function Org3Up () {$/;"	f
+addOrg3	addOrg3/addOrg3.sh	/^function addOrg3 () {$/;"	f
+approveForMyOrg	scripts/deployCC.sh	/^approveForMyOrg() {$/;"	f
+chaincodeInvokeInit	scripts/deployCC.sh	/^chaincodeInvokeInit() {$/;"	f
+chaincodeQuery	scripts/deployCC.sh	/^chaincodeQuery() {$/;"	f
+checkCommitReadiness	scripts/deployCC.sh	/^checkCommitReadiness() {$/;"	f
+checkPrereqs	network.sh	/^function checkPrereqs() {$/;"	f
+clearContainers	network.sh	/^function clearContainers() {$/;"	f
+commitChaincodeDefinition	scripts/deployCC.sh	/^commitChaincodeDefinition() {$/;"	f
+createAnchorPeerUpdate	scripts/setAnchorPeer.sh	/^createAnchorPeerUpdate() {$/;"	f
+createChannel	network.sh	/^function createChannel() {$/;"	f
+createChannel	scripts/createChannel.sh	/^createChannel() {$/;"	f
+createChannelGenesisBlock	scripts/createChannel.sh	/^createChannelGenesisBlock() {$/;"	f
+createConfigUpdate	scripts/configUpdate.sh	/^createConfigUpdate() {$/;"	f
+createOrderer	organizations/fabric-ca/registerEnroll.sh	/^function createOrderer() {$/;"	f
+createOrg1	organizations/fabric-ca/registerEnroll.sh	/^function createOrg1() {$/;"	f
+createOrg2	organizations/fabric-ca/registerEnroll.sh	/^function createOrg2() {$/;"	f
+createOrg3	addOrg3/fabric-ca/registerEnroll.sh	/^function createOrg3 {$/;"	f
+createOrgs	network.sh	/^function createOrgs() {$/;"	f
+deployCC	network.sh	/^function deployCC() {$/;"	f
+errorln	scripts/utils.sh	/^function errorln() {$/;"	f
+fatalln	scripts/utils.sh	/^function fatalln() {$/;"	f
+fetchChannelConfig	scripts/configUpdate.sh	/^fetchChannelConfig() {$/;"	f
+generateOrg3	addOrg3/addOrg3.sh	/^function generateOrg3() {$/;"	f
+generateOrg3Definition	addOrg3/addOrg3.sh	/^function generateOrg3Definition() {$/;"	f
+infoln	scripts/utils.sh	/^function infoln() {$/;"	f
+installChaincode	scripts/deployCC.sh	/^installChaincode() {$/;"	f
+joinChannel	scripts/createChannel.sh	/^joinChannel() {$/;"	f
+joinChannel	scripts/org3-scripts/joinChannel.sh	/^joinChannel() {$/;"	f
+json_ccp	addOrg3/ccp-generate.sh	/^function json_ccp {$/;"	f
+json_ccp	organizations/ccp-generate.sh	/^function json_ccp {$/;"	f
+networkDown	addOrg3/addOrg3.sh	/^function networkDown () {$/;"	f
+networkDown	network.sh	/^function networkDown() {$/;"	f
+networkUp	network.sh	/^function networkUp() {$/;"	f
+one_line_pem	addOrg3/ccp-generate.sh	/^function one_line_pem {$/;"	f
+one_line_pem	organizations/ccp-generate.sh	/^function one_line_pem {$/;"	f
+packageChaincode	scripts/deployCC.sh	/^packageChaincode() {$/;"	f
+parsePeerConnectionParameters	scripts/envVar.sh	/^parsePeerConnectionParameters() {$/;"	f
+printHelp	addOrg3/addOrg3.sh	/^function printHelp () {$/;"	f
+printHelp	scripts/utils.sh	/^function printHelp() {$/;"	f
+println	scripts/utils.sh	/^function println() {$/;"	f
+queryCommitted	scripts/deployCC.sh	/^queryCommitted() {$/;"	f
+queryInstalled	scripts/deployCC.sh	/^queryInstalled() {$/;"	f
+removeUnwantedImages	network.sh	/^function removeUnwantedImages() {$/;"	f
+setAnchorPeer	scripts/createChannel.sh	/^setAnchorPeer() {$/;"	f
+setAnchorPeer	scripts/org3-scripts/joinChannel.sh	/^setAnchorPeer() {$/;"	f
+setGlobals	scripts/envVar.sh	/^setGlobals() {$/;"	f
+setGlobalsCLI	scripts/envVar.sh	/^setGlobalsCLI() {$/;"	f
+signConfigtxAsPeerOrg	scripts/configUpdate.sh	/^signConfigtxAsPeerOrg() {$/;"	f
+successln	scripts/utils.sh	/^function successln() {$/;"	f
+updateAnchorPeer	scripts/setAnchorPeer.sh	/^updateAnchorPeer() {$/;"	f
+verifyResult	scripts/envVar.sh	/^verifyResult() {$/;"	f
+warnln	scripts/utils.sh	/^function warnln() {$/;"	f
+yaml_ccp	addOrg3/ccp-generate.sh	/^function yaml_ccp {$/;"	f
+yaml_ccp	organizations/ccp-generate.sh	/^function yaml_ccp {$/;"	f

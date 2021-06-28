@@ -1,0 +1,34 @@
+PeerOrgs:
+  - Name: pnn 
+    Domain: pnn.example.com
+    EnableNodeOUs: true
+    Template:
+      Count: 1 
+      SANS:
+        - localhost
+    Users:
+      Count: 1
+  - Name: m2m
+    Domain: m2m.example.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2 
+      SANS:
+        - localhost
+    Users:
+      Count: 1
+  - Name: etri
+    Domain: etri.example.com
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      SANS:
+        - localhost
+    Users:
+      Count: 2
+OrdererOrgs:
+  - Name: Orderer
+    Domain: example.com
+    EnableNodeOUs: true
+    Template:
+      Count: 3
